@@ -5,3 +5,8 @@
 	width: 50rem;
 	max-width: 95%;
 }
+
+.message {
+	color: #fff;
+	padding-left: 1rem;
+}
