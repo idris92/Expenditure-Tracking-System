@@ -24,3 +24,10 @@
 .new-expense__actions {
 	text-align: right;
 }
+
+.incorrect_label {
+	background-color: rgb(209, 83, 83);
+}
+.correct_label {
+	background-color: transparent;
+}

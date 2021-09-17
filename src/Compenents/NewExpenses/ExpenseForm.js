@@ -5,6 +5,7 @@ const ExpenseForm = (props) => {
 	const [ enteredTitle, setEnteredTitle ] = useState('');
 	const [ enteredAmount, setEnteredAmount ] = useState('');
 	const [ enteredDate, setEnteredDate ] = useState('');
+	const [ isValidTitle, setIsValidTitle ] = useState(true);
 
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
@@ -22,6 +23,11 @@ const ExpenseForm = (props) => {
 			amount: enteredAmount,
 			date: new Date(enteredDate)
 		};
+		if (expenseData.title.trim().length === 0) {
+			setIsValidTitle(false);
+			return;
+		}
+		setIsValidTitle(true);
 		props.onExpensesSubmit(expenseData);
 		setEnteredTitle('');
 		setEnteredAmount('');
@@ -31,7 +37,7 @@ const ExpenseForm = (props) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className="new-expense__controls">
-				<div className="new-expense__control">
+				<div className={`new-expense__control ${!isValidTitle ? 'incorrect_label' : 'correct_label'}`}>
 					<label>Title</label>
 					<input type="text" onChange={titleChangeHandler} value={enteredTitle} />
 				</div>
