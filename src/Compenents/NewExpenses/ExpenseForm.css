@@ -29,5 +29,11 @@
 	background-color: rgb(209, 83, 83);
 }
 .correct_label {
-	background-color: transparent;
+	background-color: white;
+}
+.field_required {
+	color: red;
+	font-size: 0.8rem;
+	letter-spacing: 0.2rem;
+	margin: 0;
 }

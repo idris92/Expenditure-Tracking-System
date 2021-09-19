@@ -6,6 +6,8 @@ const ExpenseForm = (props) => {
 	const [ enteredAmount, setEnteredAmount ] = useState('');
 	const [ enteredDate, setEnteredDate ] = useState('');
 	const [ isValidTitle, setIsValidTitle ] = useState(true);
+	const [ isValidAmoutn, setIsValidAmount ] = useState(true);
+	const [ isValidDate, setIsValidDate ] = useState(true);
 
 	const titleChangeHandler = (event) => {
 		setEnteredTitle(event.target.value);
@@ -25,10 +27,15 @@ const ExpenseForm = (props) => {
 		};
 		if (expenseData.title.trim().length === 0) {
 			setIsValidTitle(false);
-			return;
+		} else if (expenseData.amount.trim().length === 0) {
+			setIsValidAmount(false);
+		} else if (expenseData.date.toString().trim().length === 0) {
+			setIsValidDate(false);
 		}
-		setIsValidTitle(true);
 		props.onExpensesSubmit(expenseData);
+		setIsValidTitle(true);
+		setIsValidDate(true);
+		setIsValidAmount(true);
 		setEnteredTitle('');
 		setEnteredAmount('');
 		setEnteredDate('');
@@ -37,9 +44,15 @@ const ExpenseForm = (props) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<div className="new-expense__controls">
-				<div className={`new-expense__control ${!isValidTitle ? 'incorrect_label' : 'correct_label'}`}>
+				<div className="new-expense__control">
 					<label>Title</label>
-					<input type="text" onChange={titleChangeHandler} value={enteredTitle} />
+					<input
+						type="text"
+						onChange={titleChangeHandler}
+						value={enteredTitle}
+						className={` ${!isValidTitle ? 'incorrect_label' : 'correct_label'}`}
+					/>
+					{!isValidTitle ? <h6 className="field_required">incorrect_label</h6> : ''}
 				</div>
 				<div className="new-expense__control">
 					<label>Amount</label>
