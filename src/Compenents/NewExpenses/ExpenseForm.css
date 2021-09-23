@@ -31,6 +31,7 @@
 .correct_label {
 	background-color: white;
 }
+
 .field_required {
 	color: red;
 	font-size: 0.8rem;
